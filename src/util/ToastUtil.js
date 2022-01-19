@@ -23,4 +23,18 @@ export class ToastUtil {
         });
       }
 
+      static showWarningToast(msg) {
+        toast(msg, {
+          hideProgressBar: false,
+          type: "warning"
+        });
+      }
+    
+      static showNetworkErrorToast() {
+        toast('Something went wrong. Please check your connection!', {
+          hideProgressBar: false,
+          type: "error"
+        });
+      }
+
 }
