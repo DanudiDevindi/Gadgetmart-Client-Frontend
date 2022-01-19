@@ -9,4 +9,11 @@ export class ToastUtil {
         });
       }
 
+      static showAlertToast(msg) {
+        toast(msg, {
+          hideProgressBar: true,
+          type: "dark"
+        });
+      }
+
 }
