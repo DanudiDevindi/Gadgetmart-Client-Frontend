@@ -16,4 +16,11 @@ export class ToastUtil {
         });
       }
 
+      static showErrorToast(msg) {
+        toast(msg, {
+          hideProgressBar: false,
+          type: "error"
+        });
+      }
+
 }
