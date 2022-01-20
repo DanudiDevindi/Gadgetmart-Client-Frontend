@@ -7,6 +7,24 @@ class Header extends Component {
 
     render() {
 
+        let cart = Cookies.get('CartItems');
+        if (cart === undefined) {
+            cart = [];
+        } else {
+            cart = JSON.parse(cart);
+            cart = cart.map(item => {
+                let price = item.price;
+                if (item.discount !== null && item.discount !== 0) {
+                    price = (item.price - (item.price / 100 * item.discount));
+                }
+                return {
+                    ...item,
+                    price: price
+                }
+            });
+        }
+        let total = 0;
+
 
 
         return (
