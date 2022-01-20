@@ -5,6 +5,20 @@ import Cookies from 'js-cookie';
 
 class Header extends Component {
 
+    removeProduct = (item) => {
+        let cart = JSON.parse(Cookies.get('CartItems'));
+        let cart2 = [];
+        cart.map(i => {
+            if (i.id !== item.id) {
+                cart2.push(i);
+            }
+        });
+        Cookies.set('CartItems',JSON.stringify(cart2));
+        this.setState({
+            loading: true
+        });
+    };
+
     render() {
 
         let cart = Cookies.get('CartItems');
