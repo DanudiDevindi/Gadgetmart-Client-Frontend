@@ -4,7 +4,7 @@ export default class Footer extends Component {
   render() {
     return (
       <div>
-        <footer className="footer bg-dark">
+        <footer className="footer" style={{background: "darkblue"}}>
           <div className="container">
             <div className="footer-top">
               <div className="row row-sm">

@@ -88,7 +88,21 @@ export default class Home extends Component {
         });
     };
     
-
+ componentWillMount() {
+        this.setState({
+            loading: true
+        });
+        axios.get(BASE_URL + '/category')
+            .then(res => {
+                this.setState({
+                    categories: res.data,
+                })
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        this.getAllItems();
+    }
     render() {
         let items = [],brands = [];
         this.state.categories.map(item => {
@@ -144,23 +158,11 @@ export default class Home extends Component {
 
                         <div className="marginTop banner ">
                             <img className="owl-lazy slide-bg"
-                                 src={'https://blog.saginfotech.com/wp-content/uploads/2018/12/gst-rate-slash.jpg'}
+                                 src={'https://objectstorage.ap-mumbai-1.oraclecloud.com/n/softlogicbicloud/b/cdn/o/site-images/6193c83601d72.jpg'}
                                  data-src={slider1} alt="banner"
                                  width="1120" height="445"/>
                             <div className="banner-layer slide-1 banner-layer-left banner-layer-middle text-right">
-                                <h4 className="m-b-3 text-right ">Luxury With Brands We Love</h4>
-                                <h3 className="m-b-2 font3 text-right text-primary "
-                                    data-animation-name="blurIn" data-animation-duration="1200">Exclusive Products</h3>
-
-                                <h4 className="m-b-3 text-right " data-animation-delay="700">Now at stock</h4>
-
-                                {/*<div className="mb-0 " data-animation-delay="2400"*/}
-                                {/*     data-animation-name="fadeInUpShorter">*/}
-                                {/*    <a href="#items">*/}
-                                {/*        <button className="btn btn-modern btn-lg btn-dark homeBtn">Shop Now!</button>*/}
-                                {/*    </a>*/}
-                                {/*</div>*/}
-                            </div>
+                               </div>
                         </div>
 
 
@@ -288,7 +290,7 @@ export default class Home extends Component {
                             </div>
                         </section>
 
-                        <section>
+                        {/* <section>
                             <div className="container mt-3">
                                 <div className="info-boxes-container border-bottom mb-3">
                                     <div className="row row-joined">
@@ -325,7 +327,7 @@ export default class Home extends Component {
                                     </div>
                                 </div>
                             </div>
-                        </section>
+                        </section> */}
 
                         <div className="m-b-1"/>
 

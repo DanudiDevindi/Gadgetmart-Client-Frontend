@@ -54,9 +54,7 @@ class Header extends Component {
                                     <img
                                         src={require("../../assets/assets/images/favicon.png")}
                                         alt="Porto Logo"
-                                        width="120"
-                                        height="50"
-                                        style={{height: 50}}
+                                        style={{height: 130 }}
                                     />
                                 </a>
                             </div>
@@ -253,11 +251,11 @@ class Header extends Component {
                                         />
                                     </a>
                                 </div>
-                                <div className="bg-dark w-100">
+                                <div className="w-100" style={{backgroundColor: "darkblue"}}>
                                     <nav className="main-nav">
                                         <ul className="menu d-flex justify-content-center">
                                             <li className="active">
-                                                <Link to={`/`}>Home</Link>
+                                                <Link to={`/`} style={{color: "yellow"}}>Home</Link>
                                             </li>
 
                                             {/*<li>*/}
@@ -265,11 +263,11 @@ class Header extends Component {
                                             {/*</li>*/}
 
                                             <li>
-                                                <Link to={`/aboutUs`}>About Us</Link>
+                                                <Link to={`/aboutUs`} style={{color: "white"}}>About Us</Link>
                                             </li>
                                             {/* <a path="/aboutUs">About Us</a></li> */}
                                             <li>
-                                                <Link to={`/contactUs`}>Contact Us</Link>
+                                                <Link to={`/contactUs`} style={{color: "white"}}>Contact Us</Link>
                                             </li>
                                             {/* <li className="m-0"><a className="px-4" href="https://1.envato.market/DdLk5" target="_blank">Buy Porto!</a></li> */}
                                         </ul>
