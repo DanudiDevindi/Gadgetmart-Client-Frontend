@@ -21,6 +21,12 @@ export default class Home extends Component {
         search: ''
     };
 
+    getSubCatItems = (item) => {
+        this.setState({
+            selectedItem: item.name
+        });
+    };
+
     render() {
         let items = [],brands = [];
         this.state.categories.map(item => {
