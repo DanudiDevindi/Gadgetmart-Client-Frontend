@@ -31,7 +31,62 @@ export default class Home extends Component {
             selectedBrand: item
         });
     };
+    getAllItems = () => {
+        const body =
+            '<?xml version="1.0" encoding="utf-8"?>' +
+            '<soapenv:Envelope ' +
+            'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" ' +
+            'xmlns:sch="http://localhost:8080/xml/items"> ' +
+            '<soapenv:Header/> ' +
+            '<soapenv:Body> ' +
+            '<sch:ItemDetailsRequest> ' +
+            '<sch:name>Sajal</sch:name> ' +
+            '<sch:id>Sajal</sch:id> ' +
+            '<sch:shop>Sajal</sch:shop> ' +
+            '</sch:ItemDetailsRequest> ' +
+            '</soapenv:Body> ' +
+            '</soapenv:Envelope> ';
 
+        axios.post(BASE_URL + '/service/item-details', body, {
+            headers: {
+                'Content-Type': 'text/xml',
+            }
+        })
+            .then(res => {
+                let parser = new xml2js.Parser();
+                let items = [];
+                parser.parseString(res.data,
+                    function (err, result) {
+                        items = result['SOAP-ENV:Envelope']['SOAP-ENV:Body'][0]['ns3:ItemDetailsResponse'][0]['ns3:Items'];
+                        items = items.map(item => {
+                            return {
+                                id: item.id[0],
+                                name: item.name[0],
+                                description: item.description[0],
+                                image: item.image[0],
+                                price: Number(item.price[0]),
+                                deliveryCost: Number(item.deliveryCost[0]),
+                                brand: item.brand[0],
+                                category: item.category[0],
+                                discount: Number(item.discount[0]),
+                                shop: item.shop[0],
+                                soldOut: item.soldOut[0] === 'true',
+                                warranty: item.warranty[0],
+                            }
+                        })
+                    }
+                );
+                this.setState({
+                    items: items
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            });
+        this.setState({
+            loading: false
+        });
+    };
     
 
     render() {
