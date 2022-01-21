@@ -26,6 +26,11 @@ export default class Home extends Component {
             selectedItem: item.name
         });
     };
+    getBrands = (item) => {
+        this.setState({
+            selectedBrand: item
+        });
+    };
 
     render() {
         let items = [],brands = [];
