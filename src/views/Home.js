@@ -4,12 +4,22 @@ import Headers from '../containers/default-layout/Header';
 import slider1 from '../assets/assets/images/slider/slider_1.jpg'
 
 import axios from 'axios';
+
 import Cookies from 'js-cookie';
 import * as xml2js from "xml2js";
 import {BASE_URL} from "../const/const";
 import Pagination from '@material-ui/lab/Pagination';
 
 export default class Home extends Component {
+    state = {
+        categories: [],
+        items: [],
+        selectedItem: 'All Items',
+        selectedBrand: 'All Brands',
+        loading: false,
+        page: 1,
+        search: ''
+    };
 
     render() {
         let items = [],brands = [];
@@ -259,3 +269,4 @@ export default class Home extends Component {
     }
 
 }
+
