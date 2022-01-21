@@ -32,6 +32,8 @@ export default class Home extends Component {
         });
     };
 
+    
+
     render() {
         let items = [],brands = [];
         this.state.categories.map(item => {
@@ -281,3 +283,69 @@ export default class Home extends Component {
 
 }
 
+export const Item = ({item, props, cookies, onAdd,brandAvailable}) => {
+
+    let itemStyle = brandAvailable ? "col-6 col-md-4 col-lg-3" : "col-6 col-md-3";
+    return (
+        <div className={itemStyle}>
+            <div className="product-default inner-quickview inner-icon"
+                 data-animation-name="fadeInRightShorter">
+                <figure>
+                    <a onClick={() => props.history.push('/product', {item: item})}>
+                        <img
+                            src={item.image}
+                            alt="product" widht="400"
+                            height="400"/>
+                    </a>
+
+                    <div className="label-group">
+                        {
+                            item.discount && item.discount !== 0 ?
+                                <span
+                                    className="product-label label-sale">save {item.discount}%</span>
+                                : null
+                        }
+                    </div>
+                </figure>
+                <div className="product-details" onClick={() => props.history.push('/product', {item: item})}>
+                    <div className="category-wrap">
+                        <div className="category-list">
+                            <a
+                                className="product-category">{item.brand + " by " + item.shop}</a>
+                        </div>
+                        {/*<a className="btn-icon-wish">*/}
+                        {/*<i className="icon-bag"/></a>*/}
+                    </div>
+                    <h2 className="product-title">
+                        <a>{item.name}</a>
+                    </h2>
+
+                    {
+                        item.soldOut ?
+                            <div className="price-box">
+                                <span className="product-price">Rs. {item.price.toFixed(2)}</span>
+                                <span className="old-price mb-3">Sold out</span>
+                            </div> :
+                            <div className="price-box">
+                                {
+                                    item.discount && item.discount !== 0 ?
+                                        <>
+                                            <span className="old-price mb-3">Rs. {item.price.toFixed(2)}</span>
+
+                                            <span
+                                                className="product-price mt-3">Rs. {(item.price - (item.price / 100 * item.discount))
+                                                .toFixed(2)}</span>
+                                        </>
+                                        :
+                                        <span className="product-price">Rs. {item.price.toFixed(2)}</span>
+                                }
+                            </div>
+                    }
+
+
+                </div>
+            </div>
+
+        </div>
+    )
+};
