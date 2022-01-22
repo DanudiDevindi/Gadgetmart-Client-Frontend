@@ -11,9 +11,19 @@ export default class AboutUs extends Component {
         <main className="main">
           <div className="container mt-2 pt-0">
             <div className="outer-container page-header page-header-bg text-left about-us-header-img">
-              {/* src={require ('../assets/images/page-header-bg.jpg')}
-                style="{{background : '70%/cover #D4E1EA url('assets/images/page-header-bg.jpg')'}}" */}
-              <div className="container pl-5" style={{textAlign: "center"}}>
+             
+
+
+            <div>
+                            <img className="owl-lazy slide-bg"
+                                 src={'https://cdn.pixabay.com/photo/2017/08/27/09/21/imprint-2685464_960_720.jpg'}
+                                 alt="banner"
+                                 width="1120" height="445"/>
+                            
+                        </div>
+
+
+              <div className="container pl-5" style={{textAlign: "center", }}>
                 
                 <h5 onClick={()=>this.props.history.push('/contactUs')} className="btn"  style={{background: 'darkblue', color:'white'}}>
                   Contact Us
