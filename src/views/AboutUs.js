@@ -41,7 +41,7 @@ export default class AboutUs extends Component {
             <div className="about-section">
               <h2 className="subtitle">About Us</h2>
               <p>
-             
+              Our company is located in Kaluthara, Sri Lanka. Gadget Mart is one of the main online selling electrical and electronic items company. For over 5 many years we have been selling excessive high-quality products to our customers. Due to our robust focal point on excellent updated nice and continuously enhancing modern technology, that regularly exceeds consumer expectations, we now supply merchandise to a huge range of first-rate manufacturers and customers around the world.
               </p>
 
             </div>
