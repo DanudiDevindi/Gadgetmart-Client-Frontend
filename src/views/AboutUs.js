@@ -23,7 +23,7 @@ export default class AboutUs extends Component {
                         </div>
 
 
-              <div className="container pl-5" style={{textAlign: "center", }}>
+              <div className="container pl-5" style={{textAlign: "center", paddingTop:100}}>
                 
                 <h5 onClick={()=>this.props.history.push('/contactUs')} className="btn"  style={{background: 'darkblue', color:'white'}}>
                   Contact Us
