@@ -6,6 +6,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import AboutUs from './views/AboutUs';
 import Product from './views/Product';
 
+
 class App extends Component {
 
   render() {

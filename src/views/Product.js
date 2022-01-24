@@ -67,6 +67,28 @@ class Product extends Component {
         });
         this.props.history.push('./cart');
     };
+
+    addToWishList = (i) => {
+        let cart = Cookies.get('WishList');
+        if (cart === undefined) {
+            cart = [];
+            cart.push(i)
+        } else {
+            cart = JSON.parse(cart);
+            let cart2 = [];
+            cart.map(item => {
+                cart2.push(item.id);
+            });
+            if (!cart2.includes(i.id)) {
+                cart.push(i)
+            }
+        }
+        Cookies.set('WishList',JSON.stringify(cart));
+        this.setState({
+            loading: false
+        });
+    };
+
     
     render() {
         return (
