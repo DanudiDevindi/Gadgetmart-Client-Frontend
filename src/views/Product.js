@@ -22,6 +22,51 @@ class Product extends Component {
             loading: false
         })
     }
+
+    addToCart = (i) => {
+        let cart = Cookies.get('CartItems');
+        if (cart === undefined) {
+            cart = [];
+            cart.push({
+                ...i,
+                qty: this.state.qty
+            })
+        } else {
+            cart = JSON.parse(cart);
+            cart.push({
+                ...i,
+                qty: this.state.qty
+            });
+
+            cart = cart
+                .map(e => e['id'])
+
+                // store the keys of the unique objects
+                .map((e, i, final) => final.indexOf(e) === i && i)
+
+                // eliminate the dead keys & store unique objects
+                .filter(e => cart[e]).map(e => cart[e])
+
+            cart = cart.map(item => {
+                if (item.id === i.id){
+                    return {
+                        ...i,
+                        qty: Number(this.state.qty)
+                    }
+                } else {
+                    return item;
+                }
+            })
+
+            console.log(cart)
+        }
+        Cookies.remove('CartItems');
+        Cookies.set('CartItems',JSON.stringify(cart));
+        this.setState({
+            loading: false
+        });
+        this.props.history.push('./cart');
+    };
     
     render() {
         return (
