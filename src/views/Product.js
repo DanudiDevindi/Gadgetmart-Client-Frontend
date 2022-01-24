@@ -7,6 +7,12 @@ import Footer from "../containers/default-layout/Footer";
 
 class Product extends Component {
 
+    state = {
+        loading: true,
+        item: {},
+        qty: this.props.location.state.item.qty ?? 1
+    };
+
     render() {
         return (
             <div>
