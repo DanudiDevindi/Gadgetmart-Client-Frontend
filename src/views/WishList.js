@@ -59,6 +59,39 @@ const Item = ({item, props,cookies,onAdd}) => {
         price = (item.price-(item.price/100*item.offer.percentage));
     }
 
+    const addToCart = (i) => {
+        let cart = cookies.get('CartItems');
+        if (cart === undefined) {
+            cart = [];
+            cart.push({
+                id: i.id,
+                name: i.name,
+                image: 'http://localhost/api/uploads/' + i.images[0].name,
+                price: price,
+                qty: 1
+            })
+        } else {
+            cart = JSON.parse(cart);
+            let cart2 = [];
+            cart.map(item => {
+                cart2.push(item.id);
+            });
+            if (!cart2.includes(i.id)) {
+                cart.push({
+                    id: i.id,
+                    name: i.name,
+                    image: 'http://localhost:8080/api/uploads/' + i.images[0].name,
+                    price: price,
+                    qty: 1
+                })
+            }
+        }
+        cookies.set('CartItems',JSON.stringify(cart));
+        onAdd();
+    };
+
+
+
     return (
         <div className="col-6 col-md-4">
             <div className="product-default inner-quickview inner-icon"
