@@ -59,4 +59,66 @@ const Item = ({item, props,cookies,onAdd}) => {
         price = (item.price-(item.price/100*item.offer.percentage));
     }
 
+    return (
+        <div className="col-6 col-md-4">
+            <div className="product-default inner-quickview inner-icon"
+                 data-animation-name="fadeInRightShorter">
+                <figure>
+                    <a onClick={() => props.history.push('/product', {item: item})}>
+                        <img
+                            src={'http://localhost:8080/api/uploads/' + item.images[0].name}
+                            alt="product" widht="400"
+                            height="400"/>
+                    </a>
+
+                    <div className="label-group">
+                        {
+                            item.offer ?
+                                <span
+                                    className="product-label label-sale">-{item.offer.percentage}%</span>
+                                : null
+                        }
+                    </div>
+                    
+                </figure>
+                <div className="product-details">
+                    <div className="category-wrap">
+                        <div className="category-list">
+                            <a
+                                className="product-category">{item.subCategory.name}</a>
+                        </div>
+                        <a href="#" className="btn-icon-wish">
+                            <i className="icon-heart"/></a>
+                    </div>
+                    <h2 className="product-title">
+                        <a>{item.name}</a>
+                    </h2>
+                    <div className="ratings-container">
+                        <div className="product-ratings">
+                            <span className="ratings" style={{width: item.rating + '%'}}/>
+                            <span className="tooltiptext tooltip-top"/>
+                        </div>
+                    </div>
+                    <div className="price-box">
+
+                    </div>
+
+                    <div className="price-box">
+                        {
+                            item.offer ?
+                                <>
+                                    <span className="old-price">{item.price.toFixed(2)}</span>
+                                    <span className="product-price">Rs. {(item.price-(item.price/100*item.offer.percentage))
+                                        .toFixed(2)}</span>
+                                </>
+                                :
+                                <span className="product-price">Rs. {item.price.toFixed(2)}</span>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    )
+
 };   
