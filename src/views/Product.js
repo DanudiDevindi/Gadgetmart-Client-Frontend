@@ -13,6 +13,16 @@ class Product extends Component {
         qty: this.props.location.state.item.qty ?? 1
     };
 
+    componentWillMount() {
+        document.documentElement.scrollTop = 0;
+        document.scrollingElement.scrollTop = 0;
+        console.log(this.props.location.state.item)
+        this.setState({
+            item: this.props.location.state.item,
+            loading: false
+        })
+    }
+
     render() {
         return (
             <div>
