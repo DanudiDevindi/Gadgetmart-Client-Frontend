@@ -22,7 +22,7 @@ class Product extends Component {
             loading: false
         })
     }
-
+    
     render() {
         return (
             <div>
