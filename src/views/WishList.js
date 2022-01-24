@@ -51,3 +51,12 @@ class WishList extends React.Component {
 }
 
 export default WishList;
+
+const Item = ({item, props,cookies,onAdd}) => {
+
+    let price = item.price;
+    if (item.offer !== null) {
+        price = (item.price-(item.price/100*item.offer.percentage));
+    }
+
+};   
