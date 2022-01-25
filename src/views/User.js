@@ -28,6 +28,21 @@ class User extends React.Component {
         item: null
     };
 
+    componentWillMount(){
+        let customer = Cookies.get('customer');
+        if (customer !== undefined) {
+            customer = JSON.parse(Cookies.get('customer'));
+            this.setState({
+                email: customer.email,
+                name: customer.name,
+                address: customer.address,
+                number: customer.contact,
+                customer: customer
+            });
+            this.getOrders(customer.userId);
+        }
+    }
+
     render() {
         let token = Cookies.get('token');
         return (
