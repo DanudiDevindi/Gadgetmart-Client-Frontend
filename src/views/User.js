@@ -9,6 +9,24 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class User extends React.Component {
 
+    state = {
+        login: true,
+        error: false,
+        error2: false,
+        loading: false,
+        loading2: false,
+        email: '',
+        password: '',
+        name: '',
+        address: '',
+        number: '',
+        token: false,
+        customer: undefined,
+        active: 0,
+        orders: [],
+        modal:false,
+        item: null
+    };
 
     render() {
         let token = Cookies.get('token');
