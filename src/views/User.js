@@ -160,6 +160,15 @@ class User extends React.Component {
             });
     };
 
+    toggle = () => {
+        this.setState({
+            modal: !this.state.modal
+        })
+    }
+    onItemClick = (item) => {
+        this.setState({item});
+        this.toggle();
+    }
 
     render() {
         let token = Cookies.get('token');
