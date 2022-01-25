@@ -141,6 +141,24 @@ class User extends React.Component {
                 this.setState({error2: true,loading2: false});
             });
     };
+    getOrders = (id) => {
+        axios.get(BASE_URL+'/order?userId='+id,{
+            headers: {
+                Authorization: 'Bearer '+Cookies.get('token')
+            }
+        })
+            .then(res => {
+                console.log(res.data);
+                this.setState({orders: res.data})
+            })
+            .catch(error => {
+                console.log(error.response);
+                if (error.response.status === 401){
+                    Cookies.remove('token');
+                    this.setState({login: true})
+                }
+            });
+    };
 
 
     render() {
