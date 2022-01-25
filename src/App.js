@@ -6,6 +6,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import AboutUs from './views/AboutUs';
 import Product from './views/Product';
 import WishList from "./views/WishList";
+import User from './views/User';
 
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
           <Route exact path="/aboutUs" name="About Us" component={AboutUs} />
           <Route exact path="/product" name="Product" component={Product} />
           <Route exact path="/wishList" name="Wish List" component={WishList}/>
+          <Route exact path="/user" name="User" component={User}/>
         </Switch>
       </BrowserRouter>
     );
