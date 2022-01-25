@@ -77,6 +77,35 @@ class User extends React.Component {
             });
     };
 
+    signUp = () => {
+        this.setState({error: false});
+        if (EmailValidation(this.state.email) ||
+            RequireValidation(this.state.name) ||
+            RequireValidation(this.state.address) ||
+            MobileValidation(this.state.number) ||
+            RequireValidation(this.state.password )) {
+            this.setState({error: true,loading: false});
+            return;
+        }
+        axios.post(BASE_URL+'/auth/register',{
+            username: this.state.email,
+            password: this.state.password,
+            name: this.state.name,
+            email: this.state.email,
+            contact: this.state.number,
+            address: this.state.address
+        })
+            .then(res => {
+                console.log(res.data);
+                this.login();
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({error: true,loading: false});
+            });
+    };
+
+
     render() {
         let token = Cookies.get('token');
         return (
