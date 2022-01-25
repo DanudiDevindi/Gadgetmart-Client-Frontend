@@ -105,6 +105,43 @@ class User extends React.Component {
             });
     };
 
+    updateUser = () => {
+        this.setState({error2: false,loading2: true});
+        if (EmailValidation(this.state.email) ||
+            RequireValidation(this.state.name) ||
+            RequireValidation(this.state.address) ||
+            MobileValidation(this.state.number)) {
+            this.setState({error2: true,loading2: false});
+            return;
+        }
+        const data = {
+            ...this.state.customer,
+            contact: this.state.number,
+            address: this.state.address,
+            email: this.state.email,
+            name: this.state.name,
+            password: undefined
+        };
+        axios.patch(BASE_URL+'/user',data,{
+            headers: {
+                Authorization: 'Bearer '+Cookies.get('token')
+            }
+        })
+            .then(res => {
+                console.log(res.data);
+                if (res.data){
+                    this.setState({error2: false,loading2: false,customer:data});
+                    Cookies.set('customer',JSON.stringify(data));
+                } else {
+                    this.setState({error2: true,loading2: false});
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({error2: true,loading2: false});
+            });
+    };
+
 
     render() {
         let token = Cookies.get('token');
