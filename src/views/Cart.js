@@ -18,6 +18,13 @@ class Cart extends React.Component {
             loading: true
         });
     };
+
+    clearCart = () => {
+        Cookies.remove('CartItems');
+        this.setState({
+            loading: true
+        });
+    };
     render() {
         let cart = Cookies.get('CartItems');
         if (cart === undefined) {
