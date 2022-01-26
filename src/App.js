@@ -7,6 +7,7 @@ import AboutUs from './views/AboutUs';
 import Product from './views/Product';
 import WishList from "./views/WishList";
 import User from './views/User';
+import ContactUs from './views/ContactUs';
 
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route exact path="/product" name="Product" component={Product} />
           <Route exact path="/wishList" name="Wish List" component={WishList}/>
           <Route exact path="/user" name="User" component={User}/>
+          <Route exact path="/contactUs" name="Contact Us" component={ContactUs}/>
         </Switch>
       </BrowserRouter>
     );
