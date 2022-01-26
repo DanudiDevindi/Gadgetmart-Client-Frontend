@@ -8,6 +8,7 @@ import Product from './views/Product';
 import WishList from "./views/WishList";
 import User from './views/User';
 import ContactUs from './views/ContactUs';
+import Cart from "./views/Cart";
 
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
           <Route exact path="/wishList" name="Wish List" component={WishList}/>
           <Route exact path="/user" name="User" component={User}/>
           <Route exact path="/contactUs" name="Contact Us" component={ContactUs}/>
+          <Route exact path="/cart" name="Cart" component={Cart} />
         </Switch>
       </BrowserRouter>
     );
