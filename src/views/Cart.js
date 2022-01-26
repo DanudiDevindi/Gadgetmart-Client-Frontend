@@ -5,7 +5,19 @@ import Footer from "../containers/default-layout/Footer";
 
 class Cart extends React.Component {
    
-
+    removeProduct = (item) => {
+        let cart = JSON.parse(Cookies.get('CartItems'));
+        let cart2 = [];
+        cart.map(i => {
+            if (i.id !== item.id) {
+                cart2.push(i);
+            }
+        });
+        Cookies.set('CartItems', JSON.stringify(cart2));
+        this.setState({
+            loading: true
+        });
+    };
     render() {
         let cart = Cookies.get('CartItems');
         if (cart === undefined) {
