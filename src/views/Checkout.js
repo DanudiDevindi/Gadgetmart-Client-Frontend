@@ -10,7 +10,17 @@ import {ToastUtil} from "../util/ToastUtil";
 class Checkout extends React.Component {
 
     
-
+    state = {
+        login: true,
+        error: false,
+        loading: false,
+        email: '',
+        password: '',
+        name: '',
+        address: '',
+        number: '',
+        token: false
+    };
     render() {
         let cart = Cookies.get('CartItems');
         let token = Cookies.get('token');
