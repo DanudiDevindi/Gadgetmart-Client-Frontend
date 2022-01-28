@@ -102,6 +102,21 @@ class Checkout extends React.Component {
             });
     };
 
+    updateUser = () => {
+        this.setState({error2: false,loading2: true});
+        if (RequireValidation(this.state.address) ||
+            MobileValidation(this.state.mobile)) {
+            this.setState({error2: true,loading2: false});
+            return;
+        }
+        const data = {
+            ...this.state.customer,
+            contact: this.state.mobile,
+            address: this.state.address
+        };
+        this.setState({error2: false,loading2: false,edit: false,customer:data});
+    };
+
 
     render() {
         let cart = Cookies.get('CartItems');
