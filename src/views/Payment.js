@@ -8,6 +8,23 @@ import {BASE_URL} from "../const/const";
 
 class Checkout extends React.Component {
 
+    state = {
+        error: false,
+        error2: false,
+        error3: false,
+        loading: false,
+        loading2: false,
+        name: '',
+        number: '',
+        mobile: '',
+        exp: '',
+        cvv: '',
+        cash: true,
+        address: '',
+        customer: undefined,
+        edit: false,
+        success: false
+    };
 
     render() {
         let cart = Cookies.get('CartItems');
