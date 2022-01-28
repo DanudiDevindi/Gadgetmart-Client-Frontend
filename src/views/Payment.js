@@ -26,6 +26,19 @@ class Checkout extends React.Component {
         success: false
     };
 
+    componentWillMount(){
+        let token = Cookies.get('token');
+        if (token === undefined) {
+            this.props.history.push('/')
+        }
+        this.setState({
+            customer: JSON.parse(Cookies.get('customer')),
+            address: JSON.parse(Cookies.get('customer')).address,
+            mobile: JSON.parse(Cookies.get('customer')).contact,
+        })
+    }
+
+
     render() {
         let cart = Cookies.get('CartItems');
         let total = 0;
