@@ -38,6 +38,70 @@ class Checkout extends React.Component {
         })
     }
 
+    placeOrder = () => {
+        this.setState({error: false,error3: false,loading: true});
+        if (!this.state.cash) {
+            if (RequireValidation(this.state.name) ||
+                RequireValidation(this.state.number) ||
+                RequireValidation(this.state.exp) ||
+                RequireValidation(this.state.cvv)) {
+                this.setState({error: true,loading: false});
+                return;
+            }
+        }
+        let cart = Cookies.get('CartItems');
+        let total = 0;
+        let orderDetails = [];
+        if (cart === undefined) {
+            cart = [];
+        } else {
+            cart = JSON.parse(cart);
+        }
+        cart.map(item => {
+            console.log(item)
+            let price = item.price;
+            if (item.discount !== null && item.discount !== 0) {
+                price = (item.price - (item.price / 100 * item.discount));
+            }
+
+            total += (price*item.qty) + item.deliveryCost;
+            orderDetails.push(item)
+        });
+
+        const data = {
+            user_id: this.state.customer.userId,
+            address: this.state.customer.address,
+            contact: this.state.customer.contact,
+            paymentMethod: this.state.cash ? 'Cash' : 'Card',
+            totalCost: total,
+            orderDetail: orderDetails,
+        };
+        const header = {
+            Authorization: 'Bearer '+Cookies.get('token')
+        }
+
+        axios.post(BASE_URL+'/order',data, {
+            headers: header
+        })
+            .then(res => {
+                console.log(res.data);
+                if (res.data){
+                    Cookies.remove('CartItems');
+                    this.setState({error3: true,loading: false,success: true});
+                } else {
+                    this.setState({error3: true,loading: false,success: false});
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({error3: true,loading: false,success: false});
+                if (error.response.status === 401){
+                    Cookies.remove('token');
+                    this.props.history.push('/checkout');
+                }
+            });
+    };
+
 
     render() {
         let cart = Cookies.get('CartItems');
