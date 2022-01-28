@@ -9,6 +9,7 @@ import WishList from "./views/WishList";
 import User from './views/User';
 import ContactUs from './views/ContactUs';
 import Cart from "./views/Cart";
+import Checkout from "./views/Checkout";
 
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
           <Route exact path="/user" name="User" component={User}/>
           <Route exact path="/contactUs" name="Contact Us" component={ContactUs}/>
           <Route exact path="/cart" name="Cart" component={Cart} />
+          <Route exact path="/checkout" name="Checkout" component={Checkout} />
         </Switch>
       </BrowserRouter>
     );
