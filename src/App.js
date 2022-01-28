@@ -10,6 +10,7 @@ import User from './views/User';
 import ContactUs from './views/ContactUs';
 import Cart from "./views/Cart";
 import Checkout from "./views/Checkout";
+import Payment from "./views/Payment";
 
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
           <Route exact path="/contactUs" name="Contact Us" component={ContactUs}/>
           <Route exact path="/cart" name="Cart" component={Cart} />
           <Route exact path="/checkout" name="Checkout" component={Checkout} />
+          <Route exact path="/payment" name="Payments" component={Payment}/>
         </Switch>
       </BrowserRouter>
     );
