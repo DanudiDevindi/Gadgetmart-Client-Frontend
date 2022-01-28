@@ -21,6 +21,35 @@ class Checkout extends React.Component {
         number: '',
         token: false
     };
+
+    login = () => {
+        this.setState({error: false,loading: true});
+        if (EmailValidation(this.state.email) || RequireValidation(this.state.password)) {
+            this.setState({error: true,loading: false});
+            return;
+        }
+        axios.post(BASE_URL+'/auth/login',{
+            username: this.state.email,
+            password: this.state.password
+        })
+            .then(res => {
+                console.log(res.data);
+                if (res.data.state){
+                    Cookies.set('token',res.data.token);
+                    Cookies.set('customer',JSON.stringify(res.data));
+                    this.setState({
+                        loading: false,
+                    });
+                } else {
+                    this.setState({error: true,loading: false});
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({error: true,loading: false});
+            });
+    };
+
     render() {
         let cart = Cookies.get('CartItems');
         let token = Cookies.get('token');
