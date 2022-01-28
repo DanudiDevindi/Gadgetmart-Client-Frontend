@@ -50,6 +50,40 @@ class Checkout extends React.Component {
             });
     };
 
+    signUp = () => {
+        this.setState({error: false});
+        if (EmailValidation(this.state.email) ||
+            RequireValidation(this.state.name) ||
+            RequireValidation(this.state.address) ||
+            MobileValidation(this.state.number) ||
+            RequireValidation(this.state.password )) {
+            this.setState({error: true,loading: false});
+            return;
+        }
+        axios.post(BASE_URL+'/auth/register',{
+            userName: this.state.email,
+            password: this.state.password,
+            name: this.state.name,
+            email: this.state.email,
+            contact: this.state.number,
+            address: this.state.address
+        })
+            .then(res => {
+                console.log(res.data);
+                if (res.data){
+                    this.login();
+                } else {
+                    this.setState({error: true,loading: false});
+                    ToastUtil.showErrorToast('User Not Found')
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                ToastUtil.showErrorToast('User Not Found')
+                this.setState({error: true,loading: false});
+            });
+    };
+
     render() {
         let cart = Cookies.get('CartItems');
         let token = Cookies.get('token');
